@@ -16,8 +16,9 @@ export const actions = {
         commit('setUsers', users)
     },
     async addUser({ dispatch, state }, user) {
-        await this.$axios.post("http://localhost:3000/api/users", user)
+        const res = await this.$axios.post("http://localhost:3000/api/users", user)
         dispatch('fetch')
+        return res
     }
 }
 

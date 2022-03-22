@@ -17,6 +17,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nuxt": "^2.15.8",
+    "nuxt-sweetalert2": "^1.0.0",
     "promise": "^8.1.0",
     "request": "^2.88.2",
     "routes": "^2.1.0",

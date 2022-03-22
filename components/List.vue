@@ -4,9 +4,10 @@
       <h1>Current users</h1>
       <ul>
         <li v-for="user of users" :key="user.id">
-          <strong>ID:</strong> {{ user.id }} <strong>Name:</strong>
-          {{ user.first_name }} {{ user.last_name }} <strong>Email:</strong>
-          {{ user.email }} <strong>Phone:</strong> {{ user.phone }}
+          <strong>ID:</strong> {{ user.id }} 
+          <strong>Name:</strong> {{ user.first_name }} {{ user.last_name }} 
+          <strong>Email:</strong> {{ user.email }} 
+          <strong>Phone:</strong> {{ user.phone }}
         </li>
       </ul>
     </div>

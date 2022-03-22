@@ -55,14 +55,20 @@ export default {
   }),
   methods: {
     submit() {
-      this.$store.dispatch("users/addUser", {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        email: this.email,
-        phone: this.phone,
-        password: this.password,
-        second_password: this.second_password,
-      });
+      this.$store
+        .dispatch("users/addUser", {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          email: this.email,
+          phone: this.phone,
+          password: this.password,
+          second_password: this.second_password,
+        })
+        .then((res) => {
+          if (res.data.status === "error") {
+            this.$swal(res.data.message)
+          }
+        })
 
       this.first_name = "";
       this.last_name = "";

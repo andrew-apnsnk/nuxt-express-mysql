@@ -1,22 +1,30 @@
-const db = require("../../database/database.js")
+const UsersRepository = require('../repository/user.repository.js')
 
 class UsersController {
-    getAll = () => {
-        return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM users ', (error, elements) => {
-                if (error) return reject(error)
-                return resolve(elements)
-            })
-        })
+    async getAll(req, res) {
+        try {
+            const response = await UsersRepository.getAll()
+            return res.status(200).json(response)
+        } catch (err) {
+            res.status(500).json({ status: "error", message: "Server Error" })
+            throw err
+        }
     }
 
-    addUser = user => {
-        return new Promise((resolve, reject) => {
-            db.query('INSERT INTO users SET ?', user, (error, result) => {
-                if (error) return reject(error)
-                return resolve(user)
-            })
-        })
+    async addUser(req, res) {
+        try {
+            const existingUser = await UsersRepository.userExists(req.body.email)
+
+            if (!existingUser) {
+                const response = await UsersRepository.addUser(req.body)
+                return res.status(201).json(response)
+            } else {
+                return res.status(200).json({ status: "error", message: "User Exists" })
+            }
+        } catch (err) {
+            res.status(500).json({ status: "error", message: "Server Error" })
+            throw err
+        }
     }
 }
 
