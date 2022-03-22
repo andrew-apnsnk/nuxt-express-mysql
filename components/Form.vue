@@ -88,4 +88,11 @@ h1 {
 button {
   margin-top: 10px;
 }
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
 </style>

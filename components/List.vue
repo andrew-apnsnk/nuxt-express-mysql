@@ -35,4 +35,11 @@ h1 {
 ul {
   list-style: none;
 }
+
+li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
 </style>
