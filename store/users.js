@@ -1,3 +1,7 @@
+const api = process.env.NODE_ENV === 'production'
+    ? 'http://api.production.io'
+    : 'http://localhost:3000'
+
 export const state = () => ({
     users: []
 })
@@ -9,14 +13,12 @@ export const mutations = {
 }
 
 export const actions = {
-    async fetch({ commit }) {
-        const users = await this.$axios.$get(
-            "http://localhost:3000/api/users"
-        )
+    async fetch({ commit, state }) {
+        const users = await this.$axios.$get(`${api}/api/users`)
         commit('setUsers', users)
     },
     async addUser({ dispatch, state }, user) {
-        const res = await this.$axios.post("http://localhost:3000/api/users", user)
+        const res = await this.$axios.post(`${api}/api/users`, user)
         dispatch('fetch')
         return res
     }
