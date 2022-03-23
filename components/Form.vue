@@ -7,38 +7,45 @@
         class="form-control"
         placeholder="First name"
         v-model="first_name"
+        required
       />
       <input
         type="text"
         class="form-control"
         placeholder="Last name"
         v-model="last_name"
+        required
       />
       <input
         type="email"
         class="form-control"
         placeholder="Email"
         v-model="email"
+        required
       />
       <input
         type="tel"
         class="form-control"
-        placeholder="Phone"
+        placeholder="Phone (+123456789123)"
         v-model="phone"
+        pattern="[+0-9]{3}[0-9]{3}[0-9]{4}[0-9]{3}"
+        required
       />
       <input
         type="text"
         class="form-control"
         placeholder="Password"
         v-model="password"
-        minlength="1"
+        minlength="4"
+        required
       />
       <input
         type="text"
         class="form-control"
-        placeholder="Second password"
+        placeholder="Confirm password"
         v-model="second_password"
-        minlength="1"
+        minlength="4"
+        required
       />
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
