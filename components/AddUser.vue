@@ -7,29 +7,24 @@
         class="form-control"
         placeholder="First name"
         v-model="first_name"
-        required
       />
       <input
         type="text"
         class="form-control"
         placeholder="Last name"
         v-model="last_name"
-        required
       />
       <input
-        type="email"
+        type="text"
         class="form-control"
         placeholder="Email"
         v-model="email"
-        required
       />
       <input
         type="tel"
         class="form-control"
         placeholder="Phone (+123456789123)"
         v-model="phone"
-        pattern="[+0-9]{3}[0-9]{3}[0-9]{4}[0-9]{3}"
-        required
       />
       <input
         type="text"
@@ -37,7 +32,6 @@
         placeholder="Password"
         v-model="password"
         minlength="4"
-        required
       />
       <input
         type="text"
@@ -45,7 +39,6 @@
         placeholder="Confirm password"
         v-model="second_password"
         minlength="4"
-        required
       />
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
@@ -54,30 +47,28 @@
 
 <script>
 export default {
-  data: () => ({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    password: "",
-    second_password: "",
-  }),
+  data() {
+    return {
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      password: "",
+      second_password: "",
+    };
+  },
   methods: {
     submit() {
-      this.$store
-        .dispatch("users/addUser", {
-          first_name: this.first_name,
-          last_name: this.last_name,
-          email: this.email,
-          phone: this.phone,
-          password: this.password,
-          second_password: this.second_password,
-        })
-        .then((res) => {
-          if (res.data.status === "error") {
-            this.$swal(res.data.message);
-          }
-        });
+      const newUser = {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        phone: this.phone,
+        password: this.password,
+        second_password: this.second_password,
+      };
+
+      this.$emit("add-user", newUser);
 
       this.first_name = "";
       this.last_name = "";
