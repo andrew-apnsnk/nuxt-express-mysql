@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="submit" lang="eng">
     <h1>Add user</h1>
     <div class="form-group">
       <input
@@ -15,13 +15,13 @@
         v-model="last_name"
       />
       <input
-        type="text"
+        type="email"
         class="form-control"
         placeholder="Email"
         v-model="email"
       />
       <input
-        type="text"
+        type="tel"
         class="form-control"
         placeholder="Phone"
         v-model="phone"
@@ -31,12 +31,14 @@
         class="form-control"
         placeholder="Password"
         v-model="password"
+        minlength="1"
       />
       <input
         type="text"
         class="form-control"
         placeholder="Second password"
         v-model="second_password"
+        minlength="1"
       />
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
@@ -66,9 +68,9 @@ export default {
         })
         .then((res) => {
           if (res.data.status === "error") {
-            this.$swal(res.data.message)
+            this.$swal(res.data.message);
           }
-        })
+        });
 
       this.first_name = "";
       this.last_name = "";
