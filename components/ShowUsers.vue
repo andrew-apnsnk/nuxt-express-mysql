@@ -25,7 +25,7 @@ div {
   margin: 10px auto;
 }
 
-h1 {
+h1, h3 {
   text-align: center;
 }
 
