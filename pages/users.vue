@@ -10,7 +10,10 @@ export default {
   data() {
     return {
       users: [],
-      api: process.env.NODE_ENV === 'production' ? 'http://api.production.io' : 'http://localhost:3000'
+      api:
+        process.env.NODE_ENV === "production"
+          ? "http://api.production.io"
+          : "http://localhost:3000",
     };
   },
   mounted() {
@@ -22,12 +25,7 @@ export default {
   },
   methods: {
     async addUser(user) {
-      const res = await this.$axios.post(`${this.api}/api/users`, user);
-      if (res.data.status === "error") {
-        this.$swal(res.data.message);
-      } else {
-        this.users.push(user);
-      }
+      this.users.push(user);
     },
   },
 };

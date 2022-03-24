@@ -56,6 +56,10 @@
 export default {
   data() {
     return {
+      api:
+        process.env.NODE_ENV === "production"
+          ? "http://api.production.io"
+          : "http://localhost:3000",
       first_name: "",
       last_name: "",
       email: "",
@@ -65,7 +69,7 @@ export default {
     };
   },
   methods: {
-    submit() {
+    async submit() {
       const newUser = {
         first_name: this.first_name,
         last_name: this.last_name,
@@ -75,7 +79,12 @@ export default {
         second_password: this.second_password,
       };
 
-      this.$emit("add-user", newUser);
+      const res = await this.$axios.post(`${this.api}/api/users`, newUser);
+      if (res.data.status === "error") {
+        this.$swal(res.data.message);
+      } else {
+        this.$emit("add-user", res.data);
+      }
 
       this.first_name = "";
       this.last_name = "";

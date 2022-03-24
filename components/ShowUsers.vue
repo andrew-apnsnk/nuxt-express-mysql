@@ -2,8 +2,8 @@
   <div v-if="users.length">
     <h1>Current users</h1>
     <ul>
-      <li v-for="user of users" :key="user.id">
-          <strong>ID:</strong> {{ user.id }} 
+      <li v-for="(user, idx) of users" :key="user.id">
+          <strong>ID:</strong> {{ idx + 1 }} 
           <strong>Name:</strong> {{ user.first_name }} {{ user.last_name }} 
           <strong>Email:</strong> {{ user.email }} 
           <strong>Phone:</strong> {{ user.phone }}
